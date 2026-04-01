@@ -11,7 +11,7 @@ body {
     background: #1e1e1e;
     padding: 20px;
     border-radius: 10px;
-    width: 300px;
+    width: 320px;
 }
 
 h1 {
@@ -58,7 +58,22 @@ li {
     justify-content: space-between;
 }
 
-li button {
-    background: crimson;
-    padding: 5px;
+/* STATUS */
+.dev {
+    background: #3498db;
+}
+
+.teste {
+    background: #f1c40f;
+    color: black;
+}
+
+.aprovado {
+    background: #2ecc71;
+}
+
+/* CONCLUÍDA */
+.concluida span {
+    text-decoration: line-through;
+    opacity: 0.6;
 }

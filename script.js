@@ -33,7 +33,7 @@ function criarTarefa(texto, status) {
     li.className = status;
 
     li.innerHTML = `
-        <span>${texto}</span>
+        <span onclick="concluir(this)">${texto}</span>
         <div>
             <button onclick="avancar(this)">➡️</button>
             <button onclick="remover(this)">❌</button>
@@ -58,6 +58,12 @@ function avancar(botao) {
         alert("Essa tarefa já está finalizada!");
     }
 
+    salvarDados();
+}
+
+function concluir(span) {
+    const li = span.parentElement;
+    li.classList.toggle("concluida");
     salvarDados();
 }
 
