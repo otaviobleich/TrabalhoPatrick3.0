@@ -1,76 +1,58 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #111;
+    background: #111;
     color: white;
-    display: flex;
-    justify-content: center;
-    margin-top: 50px;
-}
-
-.container {
-    background: #1e1e1e;
-    padding: 20px;
-    border-radius: 10px;
-    width: 320px;
-}
-
-h1 {
     text-align: center;
 }
 
 .input-area {
-    display: flex;
-    gap: 10px;
+    margin: 20px;
 }
 
 input {
-    flex: 1;
     padding: 8px;
-    border: none;
     border-radius: 5px;
+    border: none;
 }
 
 button {
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
     background: red;
     color: white;
-    border: none;
-    padding: 8px;
-    border-radius: 5px;
     cursor: pointer;
 }
 
-button:hover {
-    background: darkred;
+.board {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.coluna {
+    width: 30%;
+    background: #1e1e1e;
+    padding: 10px;
+    border-radius: 10px;
 }
 
 ul {
     list-style: none;
     padding: 0;
-    margin-top: 15px;
 }
 
 li {
     background: #333;
-    padding: 8px;
-    margin-top: 5px;
+    margin-top: 10px;
+    padding: 10px;
     border-radius: 5px;
-    display: flex;
-    justify-content: space-between;
 }
 
 /* STATUS */
-.dev {
-    background: #3498db;
-}
-
-.teste {
-    background: #f1c40f;
-    color: black;
-}
-
-.aprovado {
-    background: #2ecc71;
-}
+.dev { background: #3498db; }
+.teste { background: #f1c40f; color: black; }
+.aprovado { background: #2ecc71; }
 
 /* CONCLUÍDA */
 .concluida span {

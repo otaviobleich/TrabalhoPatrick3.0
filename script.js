@@ -1,12 +1,19 @@
 function salvarDados() {
-    const lista = document.getElementById("lista").innerHTML;
-    localStorage.setItem("tarefas", lista);
+    const dados = {
+        dev: document.getElementById("dev").innerHTML,
+        teste: document.getElementById("teste").innerHTML,
+        aprovado: document.getElementById("aprovado").innerHTML
+    };
+    localStorage.setItem("kanban", JSON.stringify(dados));
 }
 
 function carregarDados() {
-    const dados = localStorage.getItem("tarefas");
+    const dados = JSON.parse(localStorage.getItem("kanban"));
+
     if (dados) {
-        document.getElementById("lista").innerHTML = dados;
+        document.getElementById("dev").innerHTML = dados.dev;
+        document.getElementById("teste").innerHTML = dados.teste;
+        document.getElementById("aprovado").innerHTML = dados.aprovado;
     }
 }
 
@@ -14,21 +21,18 @@ window.onload = carregarDados;
 
 function adicionarTarefa() {
     const input = document.getElementById("tarefa");
-    const texto = input.value;
 
-    if (texto === "") {
+    if (input.value === "") {
         alert("Digite uma tarefa!");
         return;
     }
 
-    criarTarefa(texto, "dev");
+    criarTarefa(input.value, "dev");
     input.value = "";
     salvarDados();
 }
 
 function criarTarefa(texto, status) {
-    const lista = document.getElementById("lista");
-
     const li = document.createElement("li");
     li.className = status;
 
@@ -40,7 +44,7 @@ function criarTarefa(texto, status) {
         </div>
     `;
 
-    lista.appendChild(li);
+    document.getElementById(status).appendChild(li);
 }
 
 function avancar(botao) {
@@ -49,21 +53,22 @@ function avancar(botao) {
     if (li.classList.contains("dev")) {
         li.classList.remove("dev");
         li.classList.add("teste");
+        document.getElementById("teste").appendChild(li);
     } 
     else if (li.classList.contains("teste")) {
         li.classList.remove("teste");
         li.classList.add("aprovado");
+        document.getElementById("aprovado").appendChild(li);
     } 
     else {
-        alert("Essa tarefa já está finalizada!");
+        alert("Já está aprovado!");
     }
 
     salvarDados();
 }
 
 function concluir(span) {
-    const li = span.parentElement;
-    li.classList.toggle("concluida");
+    span.parentElement.classList.toggle("concluida");
     salvarDados();
 }
 

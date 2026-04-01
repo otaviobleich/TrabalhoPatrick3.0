@@ -2,20 +2,33 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>Fluxo de Tarefas</title>
+    <title>Fluxo Kanban</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div class="container">
-    <h1>🚀 Fluxo DEV → TEST → APROVADO</h1>
+<h1>🚀 Fluxo DEV → TEST → APROVADO</h1>
 
-    <div class="input-area">
-        <input type="text" id="tarefa" placeholder="Nova tarefa">
-        <button onclick="adicionarTarefa()">Adicionar</button>
+<div class="input-area">
+    <input type="text" id="tarefa" placeholder="Nova tarefa">
+    <button onclick="adicionarTarefa()">Adicionar</button>
+</div>
+
+<div class="board">
+    <div class="coluna">
+        <h2>DEV</h2>
+        <ul id="dev"></ul>
     </div>
 
-    <ul id="lista"></ul>
+    <div class="coluna">
+        <h2>TESTE</h2>
+        <ul id="teste"></ul>
+    </div>
+
+    <div class="coluna">
+        <h2>APROVADO</h2>
+        <ul id="aprovado"></ul>
+    </div>
 </div>
 
 <script src="script.js"></script>
