@@ -1,3 +1,17 @@
+function salvarDados() {
+    const lista = document.getElementById("lista").innerHTML;
+    localStorage.setItem("tarefas", lista);
+}
+
+function carregarDados() {
+    const dados = localStorage.getItem("tarefas");
+    if (dados) {
+        document.getElementById("lista").innerHTML = dados;
+    }
+}
+
+window.onload = carregarDados;
+
 function adicionarTarefa() {
     const input = document.getElementById("tarefa");
     const texto = input.value;
@@ -7,18 +21,47 @@ function adicionarTarefa() {
         return;
     }
 
+    criarTarefa(texto, "dev");
+    input.value = "";
+    salvarDados();
+}
+
+function criarTarefa(texto, status) {
     const lista = document.getElementById("lista");
 
     const li = document.createElement("li");
+    li.className = status;
+
     li.innerHTML = `
-        ${texto}
-        <button onclick="removerTarefa(this)">X</button>
+        <span>${texto}</span>
+        <div>
+            <button onclick="avancar(this)">➡️</button>
+            <button onclick="remover(this)">❌</button>
+        </div>
     `;
 
     lista.appendChild(li);
-    input.value = "";
 }
 
-function removerTarefa(botao) {
-    botao.parentElement.remove();
+function avancar(botao) {
+    const li = botao.parentElement.parentElement;
+
+    if (li.classList.contains("dev")) {
+        li.classList.remove("dev");
+        li.classList.add("teste");
+    } 
+    else if (li.classList.contains("teste")) {
+        li.classList.remove("teste");
+        li.classList.add("aprovado");
+    } 
+    else {
+        alert("Essa tarefa já está finalizada!");
+    }
+
+    salvarDados();
+}
+
+function remover(botao) {
+    botao.parentElement.parentElement.remove();
+    salvarDados();
 }
